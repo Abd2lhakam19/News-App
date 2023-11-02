@@ -7,7 +7,9 @@ class HomeDrawer extends StatelessWidget {
   static const int categoryClick = 1;
   static const int settingsClick = 2;
   Function onDrawerClick;
+
   HomeDrawer(this.onDrawerClick);
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
@@ -33,7 +35,7 @@ class HomeDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 onDrawerClick(categoryClick);
               },
               child: Row(
@@ -56,7 +58,7 @@ class HomeDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 onDrawerClick(settingsClick);
               },
               child: Row(

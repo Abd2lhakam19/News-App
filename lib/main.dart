@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/app%20ui/home/home_screen.dart';
+import 'package:news_app/app%20ui/screens/news_details_screen.dart';
 import 'package:news_app/app%20ui/screens/splahs_screen.dart';
 import 'package:news_app/app%20ui/theme/my_theme.dart';
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName : (_)=>SplashScreen(),
-        HomeScreen.routeName :(context)=>HomeScreen(),
+        HomeScreen.routeName :(_)=>HomeScreen(),
+        NewsDetails.routeName :(_)=>NewsDetails(),
       },
       initialRoute: SplashScreen.routeName ,
       theme: MyTheme.lightTheme,

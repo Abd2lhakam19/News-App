@@ -22,18 +22,30 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(selectedDrawer==1?selectedCat==null? " News App ": selectedCat.title:"Settings"),
+        title: Text(selectedDrawer == 1
+            ? selectedCat == null
+                ? " News App "
+                : selectedCat.title
+            : "Settings"),
       ),
       drawer: Drawer(
         child: HomeDrawer(onDrawerClick),
       ),
       body: Stack(
         children: [
-          Image.asset('assets/images/pattern.png',fit: BoxFit.cover,height: MediaQuery.of(context).size.height,width: MediaQuery.of(context).size.width,),
+          Image.asset(
+            'assets/images/pattern.png',
+            fit: BoxFit.cover,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+          ),
           Padding(
             padding: EdgeInsets.all(15),
-            child:selectedDrawer==1? selectedCat==null
-              ?CategoryFragments(onItemClick):CategoryTabDetails(selectedCat.title):SettingsTab(),
+            child: selectedDrawer == 1
+                ? selectedCat == null
+                    ? CategoryFragments(onItemClick)
+                    : CategoryTabDetails(selectedCat.title)
+                : SettingsTab(),
           ),
         ],
       ),
@@ -42,17 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   var selectedCat = null;
   var selectedDrawer = 1;
+
   onItemClick(CategoryFragModel newItem) {
     selectedCat = newItem;
     setState(() {});
   }
-  onDrawerClick(int id)
-  {
-   selectedDrawer = id;
-   selectedCat = null;
-   Navigator.pop(context);
-   setState(() {
 
-   });
+  onDrawerClick(int id) {
+    selectedDrawer = id;
+    selectedCat = null;
+    Navigator.pop(context);
+    setState(() {});
   }
 }
