@@ -6,8 +6,8 @@ import '../../../app logic/api/models/sourceResponse.dart';
 
 class CategoryTab extends StatefulWidget {
   List<Sources> soursesList;
-
-  CategoryTab(this.soursesList);
+  String?search;
+  CategoryTab(this.soursesList,this.search);
 
   @override
   State<CategoryTab> createState() => _CategoryTabState();
@@ -37,7 +37,7 @@ class _CategoryTabState extends State<CategoryTab> {
                 .toList(),
           ),
           SizedBox(height: 7,),
-          Expanded(child: NewsTab(widget.soursesList[selectedIndex]))
+          Expanded(child: NewsTab(widget.soursesList[selectedIndex],widget.search))
         ],
       ),
     );

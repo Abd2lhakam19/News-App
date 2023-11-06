@@ -7,14 +7,14 @@ import 'news_containr.dart';
 
 class NewsTab extends StatelessWidget {
   Sources source;
-
-  NewsTab(this.source);
+  String?search;
+  NewsTab(this.source,this.search);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: ApiManager.getNewsWithId(source.id??""),
+        future: ApiManager.getNewsWithId(source.id??"",search: search),
         builder: (context, snapshot) {
           if(snapshot.connectionState== ConnectionState.waiting)
             {

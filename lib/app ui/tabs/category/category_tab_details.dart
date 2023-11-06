@@ -9,7 +9,8 @@ import '../../constant_ui/const_colors.dart';
 
 class CategoryTabDetails extends StatelessWidget {
   String title;
-  CategoryTabDetails(this.title);
+  String?search;
+  CategoryTabDetails(this.title,this.search);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class CategoryTabDetails extends StatelessWidget {
             );
           }
           var soursesList = snapshot.data?.sources ?? [];
-          return CategoryTab(soursesList);
+          return CategoryTab(soursesList,search);
         });
   }
 }

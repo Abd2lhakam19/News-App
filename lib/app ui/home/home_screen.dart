@@ -18,16 +18,71 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool selected = false;
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(selectedDrawer == 1
-            ? selectedCat == null
-                ? " News App "
-                : selectedCat.title
-            : "Settings"),
-      ),
+      appBar: selected
+          ? AppBar(
+              title: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: ConstColors.secondryColor),
+                  child: TextFormField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                    decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide.none),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide.none,
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          selected = false;
+                          setState(() {});
+                        },
+                        icon: Icon(
+                          Icons.clear,
+                        ),
+                      ),
+                      prefixIcon: Icon(Icons.search),
+                      hintText: "Search",
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      suffixIconColor: ConstColors.primaryColor,
+                      prefixIconColor: ConstColors.primaryColor,
+                      hintStyle: TextStyle(color: ConstColors.primaryColor),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          : AppBar(
+              title: Text(selectedDrawer == 1
+                  ? selectedCat == null
+                      ? " News App "
+                      : selectedCat.title
+                  : "Settings"),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      selected = true;
+                      setState(() {});
+                    },
+                    icon: Icon(Icons.search))
+              ],
+            ),
       drawer: Drawer(
         child: HomeDrawer(onDrawerClick),
       ),
@@ -44,7 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: selectedDrawer == 1
                 ? selectedCat == null
                     ? CategoryFragments(onItemClick)
-                    : CategoryTabDetails(selectedCat.title)
+                    : CategoryTabDetails(
+                        selectedCat.title, searchController.text)
                 : SettingsTab(),
           ),
         ],

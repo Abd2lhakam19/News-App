@@ -25,11 +25,12 @@ class ApiManager {
     }
   }
 
-  static Future<NewsResponse> getNewsWithId(String sourceId) async{
+  static Future<NewsResponse> getNewsWithId(String sourceId,{String? search}) async{
     //https://newsapi.org/v2/everything?q=bitcoin&apiKey=588c9cbcbae04410a606bf33e868c866
     Uri url = Uri.https(ApiConstant.baseUrl,ApiConstant.newsApi,{
       'apiKey': '588c9cbcbae04410a606bf33e868c866',
-      'sources':sourceId
+      'sources':sourceId,
+      'q':search
     });
     try
     {
