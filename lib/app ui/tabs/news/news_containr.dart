@@ -15,8 +15,8 @@ class NewsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        Navigator.pushNamed(context, NewsDetails.routeName,arguments: news);
+      onTap: () {
+        Navigator.pushNamed(context, NewsDetails.routeName, arguments: news);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
